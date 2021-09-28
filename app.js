@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 
@@ -9,7 +10,7 @@ const Hook = require("./controllers/patient-consent-consult");
 const Xacml = require("./controllers/xacml");
 
 const app = express();
-
+app.use(cors());
 //trust proxy
 app.set("trust proxy", true);
 
