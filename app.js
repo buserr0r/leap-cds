@@ -10,7 +10,12 @@ const Hook = require("./controllers/patient-consent-consult");
 const Xacml = require("./controllers/xacml");
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS'],
+}));
+
 //trust proxy
 app.set("trust proxy", true);
 
