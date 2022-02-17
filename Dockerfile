@@ -15,4 +15,4 @@ COPY . .
 #Expose default port according to server.js
 EXPOSE 3000
 
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start", ".env" ]

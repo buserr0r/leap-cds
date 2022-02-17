@@ -6,15 +6,19 @@ const logger = require("../lib/logger");
 
 async function post(req, res, next) {
   try {
+    
     validateHookRequest(req);
 
     const patientIds = req.body.context.patientId;
     const category = req.body.context.category || [];
 
-    const consentsBundle = await fetchConsents(patientIds, category);
+    const consentsBundle = await fetchConsents(patientIds, category, req.body.fhirServer, req.body.fhirAuthorization);
+    // console.log('consentsBundle', consentsBundle)
     const decisionEntry = await processDecision(
       consentsBundle,
-      req.body.context
+      req.body.context,
+      req.body.fhirServer,
+      req.body.fhirAuthorization
     );
 
     logger.debug(
